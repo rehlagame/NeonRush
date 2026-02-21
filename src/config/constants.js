@@ -1,20 +1,19 @@
 // src/config/constants.js
 
 export const CONFIG = {
-    // إعدادات الفيزياء والسرعة
-    BASE_SPEED: 400,        // السرعة الابتدائية
-    MAX_SPEED: 1000,        // السرعة القصوى
-    ACCELERATION: 10,       // معدل زيادة السرعة كل ثانية
-    GRAVITY: 2800,          // قوة الجاذبية (رقم كبير لضمان سقوط سريع ومحكم)
-    JUMP_FORCE: -950,       // قوة القفزة الأولى (بالسالب لأن Y للأعلى)
-    DOUBLE_JUMP_FORCE: -800,// قوة القفزة الثانية
+    // إعدادات الفيزياء والسرعة (تم تعديلها لتكون أبطأ وأمتع)
+    BASE_SPEED: 280,        // كانت 400 (الآن أبطأ بـ 30% لبداية هادئة)
+    MAX_SPEED: 850,         // كانت 1000 (لضمان عدم وصول اللعبة لسرعة مستحيلة)
+    ACCELERATION: 6,        // كانت 10 (زيادة السرعة ستكون ألطف وأبطأ)
 
-    // أبعاد نسبية
-    GROUND_HEIGHT_RATIO: 0.15, // الأرض تأخذ 15% من الشاشة من الأسفل
-    PLAYER_SIZE_RATIO: 0.08,   // حجم اللاعب 8% من عرض الشاشة (ليتناسب مع أي هاتف)
-    MAX_PLAYER_SIZE: 60,       // أقصى حجم للاعب على شاشات التابلت/الحاسوب
+    GRAVITY: 2800,
+    JUMP_FORCE: -950,
+    DOUBLE_JUMP_FORCE: -800,
 
-    // الثيمات والألوان (Neon Cyberpunk)
+    GROUND_HEIGHT_RATIO: 0.15,
+    PLAYER_SIZE_RATIO: 0.08,
+    MAX_PLAYER_SIZE: 60,
+
     THEMES: [
         { name: 'Cyan', main: '#00f3ff', bg: '#050510' },
         { name: 'Magenta', main: '#bc13fe', bg: '#100510' },
