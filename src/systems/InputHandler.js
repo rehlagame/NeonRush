@@ -1,27 +1,40 @@
 // src/systems/InputHandler.js
 
-init() {
-    // 1. دعم الحواسيب
-    window.addEventListener('keydown', (e) => {
-        if (e.code === 'Space' || e.code === 'ArrowUp') {
+export class InputHandler {
+    constructor() {
+        this.jumpRequested = false;
+        this.init();
+    }
+
+    init() {
+        // 1. دعم الحواسيب (كيبورد)
+        window.addEventListener('keydown', (e) => {
+            if (e.code === 'Space' || e.code === 'ArrowUp') {
+                this.triggerJump();
+            }
+        });
+
+        // 2. استخدام pointerdown لتوحيد اللمس والماوس بذكاء
+        window.addEventListener('pointerdown', (e) => {
+            // تحقق: هل النقر على زر؟ إذا نعم، لا تقفز
+            if (e.target.closest('button') || e.target.tagName === 'BUTTON') {
+                return;
+            }
+
+            // إذا لم يكن زراً، نفذ القفزة
             this.triggerJump();
-        }
-    });
-    window.addEventListener('mousedown', (e) => {
-        // تجاهل النقر إذا كان على زر (لتجنب القفز عند ضغط زر البداية)
-        if (e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
-        this.triggerJump();
-    });
+        }, { passive: true });
+    }
 
-    // 2. دعم الهواتف (اللمس) - التعديل الحاسم هنا 👇
-    window.addEventListener('touchstart', (e) => {
-        // تحقق: هل العنصر الذي تم لمسه هو "زر" أو "داخل زر"؟
-        if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
-            return; // اخرج فوراً واترك الزر يعمل بشكل طبيعي
-        }
+    triggerJump() {
+        this.jumpRequested = true;
+    }
 
-        // إذا لم يكن زراً، امنع التمرير ونفذ القفزة
-        if (e.cancelable) e.preventDefault();
-        this.triggerJump();
-    }, { passive: false });
+    pollJump() {
+        if (this.jumpRequested) {
+            this.jumpRequested = false;
+            return true;
+        }
+        return false;
+    }
 }
