@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="theme-color" content="#050510">
+    <title>NEON RUSH - 2026</title>
+    <link rel="stylesheet" href="/src/ui/style.css">
+    <link rel="manifest" href="/manifest.json">
+</head>
+<body>
+<div class="scanlines"></div>
+
+<div id="app">
+    <canvas id="gameCanvas"></canvas>
+
+    <div id="ui-layer">
+        <!-- عدادات اللعب (HUD) -->
+        <div id="hud" class="hud-container hidden">
+            <div class="stat-box score-box">المسافة: <span id="scoreValue">0</span></div>
+            <div class="stat-box coins-box">💠 <span id="coinsValue">0</span></div>
+        </div>
+
+        <!-- شاشة التحميل -->
+        <div id="loading-screen" class="screen active">
+            <h1 class="glow-text primary-glow">جاري التحميل...</h1>
+        </div>
+
+        <!-- القائمة الرئيسية -->
+        <div id="menu-screen" class="screen">
+            <h1 class="glow-text primary-glow">NEON <span class="secondary-glow blink">RUSH</span></h1>
+            <p class="hint-text">اضغط للقفز • اضغط مرتين للقفز المزدوج</p>
+            <button id="start-btn" class="neon-btn">ابدأ اللعب</button>
+        </div>
+
+        <!-- شاشة الخسارة -->
+        <div id="game-over-screen" class="screen">
+            <h1 class="glow-text danger-glow">تم التهكير!</h1>
+            <div class="results-grid">
+                <div>النتيجة: <strong id="finalScore">0</strong></div>
+                <div>العملات: <strong id="finalCoins">0</strong></div>
+            </div>
+            <button id="restart-btn" class="neon-btn">إعادة المحاولة</button>
+        </div>
+    </div>
+</div>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
